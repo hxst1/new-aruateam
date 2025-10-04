@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+// app/layout.tsx
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -7,9 +8,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo.svg",
   },
+};
+
+// 👇 themeColor ahora va en viewport
+export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" }, // igual que tu tema claro
+    { media: "(prefers-color-scheme: dark)", color: "#0b0b0e" }, // igual que --bg en dark
   ],
 };
 
