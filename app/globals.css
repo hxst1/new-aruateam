@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* =========================================================
+   THEME TOKENS + PREFERS-COLOR-SCHEME FALLBACK
+   ========================================================= */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* fallback: usa el tema del sistema si aún no hay data-theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #0b0b0e;
+    --fg: #e5e7eb;
+    --brd: #e5e7eb;      /* 👈 borde claro en dark */
+    --muted: #9ca3af;
+    --card: #121218;
+    --brand: #8b5cf6;    /* violet-500 */
+    --brand-fg: #0b0b0e;
+    --brand-ring: rgba(139, 92, 246, 0.35);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* modo claro explícito */
+html[data-theme="light"] {
+  --bg: #ffffff;
+  --fg: #0b0b0e;
+  --brd: #0b0b0e;        /* 👈 borde oscuro en light */
+  --muted: #2a2a2a;
+  --card: #f3f3f3;
+  --brand: #ef4444;      /* red-500 */
+  --brand-fg: #ffffff;
+  --brand-ring: rgba(239, 68, 68, 0.35);
 }
+
+/* modo oscuro explícito */
+html[data-theme="dark"] {
+  --bg: #0b0b0e;
+  --fg: #e5e7eb;
+  --brd: #e5e7eb;        /* 👈 borde claro en dark */
+  --muted: #9ca3af;
+  --card: #121218;
+  --brand: #8b5cf6;      /* violet-500 */
+  --brand-fg: #0b0b0e;
+  --brand-ring: rgba(139, 92, 246, 0.35);
+}
+
+/* =========================================================
+   FUNDAMENTALES
+   ========================================================= */
+html, body, :root { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   HELPERS VISUALES
+   ========================================================= */
+.card {
+  background: color-mix(in oklab, var(--card) 90%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in oklab, var(--brd) 15%, transparent); /* 👈 usa --brd */
+  border-radius: 1rem;
+  box-shadow: 0 0 0 0 var(--brand-ring);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--brand-ring);
+}
+
+/* === SVG helpers === */
+.fill-fg { fill: var(--fg); }
+.fill-brand { fill: var(--brand); }
+
+/* =========================================================
+   UTILS PARA TAILWIND
+   ========================================================= */
+.bg-app  { background: var(--bg); }
+.fg-app  { color: var(--fg); }
+.text-muted { color: var(--muted); }
+.bg-card { background: var(--card); }
+.text-brand { color: var(--brand); }
+.bg-brand { background: var(--brand); color: var(--brand-fg); }
+
+/* BORDES (reusables) */
+.brd         { border-color: color-mix(in oklab, var(--brd) 15%, transparent); }
+.brd-strong  { border-color: color-mix(in oklab, var(--brd) 35%, transparent); }
+.divider     { background: color-mix(in oklab, var(--brd) 15%, transparent); height:1px; }
