@@ -4,9 +4,12 @@ export default function Footer() {
   return (
     <footer className="mt-16 border brd">
       <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-muted">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
-          <p>© {new Date().getFullYear()} ARUATEAM. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <p className="text-center md:text-left">
+            © {new Date().getFullYear()} ARUATEAM. All rights reserved.
+          </p>
+
+          <div className="flex items-center justify-center md:justify-end gap-4">
             <a
               href="#"
               className="inline-flex items-center gap-1.5 hover:text-brand"

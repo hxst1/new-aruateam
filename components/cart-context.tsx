@@ -22,7 +22,7 @@ type CartAction =
   | { type: "CLEAR" };
 
 const INITIAL: CartState = { lines: [] };
-const STORAGE_KEY = "aruateam-cart-v2";
+const STORAGE_KEY = "aruateam-cart";
 
 function reducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {

@@ -33,7 +33,11 @@ export default function ThemeToggle() {
       ) : (
         <Sun className="h-4 w-4" />
       )}
-      <span>{theme === "dark" ? "Oscuro" : "Claro"}</span>
+      {
+        <span className="hidden md:inline">
+          {theme === "dark" ? "Oscuro" : "Claro"}
+        </span>
+      }
     </button>
   );
 }
