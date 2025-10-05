@@ -12,7 +12,7 @@
     --brd: #e5e7eb;      /* 👈 borde claro en dark */
     --muted: #9ca3af;
     --card: #121218;
-    --brand: #8b5cf6;    /* violet-500 */
+    --brand: #7f49fc;    /* violet-500 */
     --brand-fg: #0b0b0e;
     --brand-ring: rgba(139, 92, 246, 0.35);
   }
@@ -25,7 +25,7 @@ html[data-theme="light"] {
   --brd: #0b0b0e;        /* 👈 borde oscuro en light */
   --muted: #2a2a2a;
   --card: #f3f3f3;
-  --brand: #ef4444;      /* red-500 */
+  --brand: #ff0000;      /* red-500 */
   --brand-fg: #ffffff;
   --brand-ring: rgba(239, 68, 68, 0.35);
 }
