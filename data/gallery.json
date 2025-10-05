@@ -1,0 +1,28 @@
+[
+  {
+    "id": "session-aru-montmelo-2024",
+    "title": "Trackday Montmeló",
+    "photographer": { "name": "ShotByKiro", "instagram": "shotbykiro" },
+    "date": "2024-10-18",
+    "cover": "/images/gallery/test.jpg",
+    "images": [
+      { "src": "/images/gallery/marc/test1.jpg", "alt": "Salida pit lane" },
+      { "src": "/images/gallery/marc/test2.jpg" },
+      { "src": "/images/gallery/marc/test3.jpg" },
+      { "src": "/images/gallery/marc/test4.jpg" }
+    ]
+  },
+  {
+    "id": "session-aru-urban-2025",
+    "title": "Urban Session BCN",
+    "photographer": { "name": "Ana Visuals", "instagram": "@anavisuals" },
+    "date": "2025-02-01",
+    "cover": "/images/gallery/test.jpg",
+    "images": [
+      { "src": "/images/gallery/marc/test5.jpg" },
+      { "src": "/images/gallery/marc/test4.jpg" },
+      { "src": "/images/gallery/marc/test1.jpg" },
+      { "src": "/images/gallery/marc/test2.jpg" }
+    ]
+  }
+]

@@ -3,9 +3,11 @@ import items from "@/data/items.json";
 import type { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product-card";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 const ALL = "Todos";
+const LIMIT = 6;
 
 export default function HomePage() {
   const products = items as Product[];
@@ -22,15 +24,20 @@ export default function HomePage() {
   const filtered = useMemo(() => {
     return products.filter((p) => {
       const byCat = cat === ALL ? true : p.tags?.includes(cat);
+      const haystack = (
+        p.name +
+        " " +
+        (p.description ?? "") +
+        " " +
+        p.tags.join(" ")
+      ).toLowerCase();
       const byQ =
-        q.trim().length === 0
-          ? true
-          : (p.name + " " + (p.description ?? "") + " " + p.tags.join(" "))
-              .toLowerCase()
-              .includes(q.toLowerCase());
+        q.trim().length === 0 ? true : haystack.includes(q.toLowerCase());
       return byCat && byQ;
     });
   }, [products, cat, q]);
+
+  const visible = filtered.slice(0, LIMIT);
 
   return (
     <div className="mx-auto max-w-6xl px-4">
@@ -73,7 +80,7 @@ export default function HomePage() {
             <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href="#catalogo"
-                className="rounded-full bg-brand px-4 py-2 text-sm font-semibold"
+                className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-[var(--brand-fg)]"
               >
                 Ver catálogo
               </a>
@@ -98,15 +105,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* GRID */}
+      {/* CATÁLOGO */}
       <section id="catalogo" className="my-12">
         <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">Catálogo</h2>
-            <p className="text-sm text-muted">
-              Productos ARUATEAM — demo frontend
-            </p>
+          <div className="flex items-end gap-3">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight">Catálogo</h2>
+              <p className="text-sm text-muted">
+                Mostrando {Math.min(LIMIT, filtered.length)} de{" "}
+                {filtered.length}
+              </p>
+            </div>
+            <Link
+              href="/shop"
+              className="rounded-full border brd px-3 py-1.5 text-xs sm:text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)]"
+            >
+              Ver catálogo completo
+            </Link>
           </div>
+
           <div className="flex flex-col gap-2 sm:flex-row">
             <input
               value={q}
@@ -133,12 +150,82 @@ export default function HomePage() {
             No hay productos que coincidan con tu búsqueda.
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {visible.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+
+            {/* CTA bajo el grid */}
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/shop"
+                className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)]"
+              >
+                Ver el catálogo completo
+              </Link>
+            </div>
+          </>
         )}
+      </section>
+
+      {/* GALERÍA (teaser) */}
+      <section className="my-16">
+        <div className="mb-4 flex items-end justify-between">
+          <div>
+            <h3 className="text-xl font-bold tracking-tight">Galería</h3>
+            <p className="text-sm text-muted">
+              Sesiones, eventos y lifestyle ARUATEAM
+            </p>
+          </div>
+          <Link
+            href="/gallery"
+            className="rounded-full border brd px-3 py-1.5 text-xs sm:text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)]"
+          >
+            Ver galería
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+          {/* Sustituye por tus imágenes reales */}
+          {[
+            "/images/test.jpg",
+            "/images/test1.jpg",
+            "/images/test2.jpg",
+            "/images/test3.jpg",
+            "/images/test4.jpg",
+            "/images/test5.jpg",
+            "/images/test1.jpg",
+            "/images/test2.jpg",
+          ].map((src, i) => (
+            <div
+              key={i}
+              className="relative group overflow-hidden rounded-xl border brd"
+            >
+              <Image
+                src={src}
+                alt={`Galería ${i + 1}`}
+                width={600}
+                height={600}
+                className="h-40 w-full object-cover sm:h-44 md:h-48 transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.06]"
+              />
+              {/* overlay suave */}
+              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 flex justify-center">
+          <Link
+            href="/gallery"
+            className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)]"
+          >
+            Ver galería completa
+          </Link>
+        </div>
       </section>
     </div>
   );

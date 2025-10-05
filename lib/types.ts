@@ -35,3 +35,13 @@ export type CartLine = {
 };
 
 export type CartState = { lines: CartLine[] };
+
+export type GalleryImage = { src: string; alt?: string };
+export type GallerySession = {
+  id: string;
+  title: string;
+  photographer: { name: string; instagram?: string }; // @handle sin @ o con @ (acepto ambos)
+  date: string; // ISO (YYYY-MM-DD)
+  cover: string; // imagen representativa
+  images: GalleryImage[];
+};

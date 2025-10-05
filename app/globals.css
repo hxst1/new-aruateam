@@ -45,7 +45,7 @@ html[data-theme="dark"] {
 /* =========================================================
    FUNDAMENTALES
    ========================================================= */
-html, body, :root { height: 100%; }
+html, body, :root { height: 100%; scrollbar-gutter: stable; }
 body {
   background: var(--bg);
   color: var(--fg);
