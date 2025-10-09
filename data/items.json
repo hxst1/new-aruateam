@@ -9,16 +9,16 @@
     "tags": ["lanyard", "accessory"],
     "colorway": ["purple", "black"],
     "inStock": true,
-    "description": "Lanyard de poliéster premium con impresión ARUATEAM, clip metálico y cierre rápido.",
+    "description": "Premium polyester lanyard with ARUATEAM print, metal clip, and quick-release.",
     "specs": [
-      { "label": "Material", "value": "Poliéster + clip metálico" },
-      { "label": "Cierre", "value": "Quick-release" },
-      { "label": "Longitud", "value": "45 cm" }
+      { "label": "Material", "value": "Polyester + metal clip" },
+      { "label": "Closure", "value": "Quick-release" },
+      { "label": "Length", "value": "45 cm" }
     ]
   },
   {
     "id": "nobori-flag-aru",
-    "name": "Nobori ARUATEAM — Trackside",
+    "name": "ARUATEAM Nobori — Trackside",
     "slug": "nobori-aruateam",
     "price": 4500,
     "currency": "EUR",
@@ -26,17 +26,17 @@
     "tags": ["nobori", "banner"],
     "colorway": ["purple"],
     "inStock": true,
-    "description": "Bandera nobori 60×180cm, tela resistente, gráficos nítidos estilo JDM.",
+    "description": "Nobori flag 60×180 cm, durable fabric, crisp JDM-style graphics.",
     "dimensions": "60 × 180 cm",
     "specs": [
-      { "label": "Tela", "value": "Poliéster 110 g/m²" },
-      { "label": "Impresión", "value": "Sublimación HD" },
-      { "label": "Uso", "value": "Exterior / Interior" }
+      { "label": "Fabric", "value": "Polyester 110 g/m²" },
+      { "label": "Print", "value": "HD sublimation" },
+      { "label": "Use", "value": "Outdoor / Indoor" }
     ]
   },
   {
     "id": "keychain-metal-aru",
-    "name": "Keychain ARUATEAM",
+    "name": "ARUATEAM Keychain",
     "slug": "keychain-metal",
     "price": 900,
     "currency": "EUR",
@@ -44,15 +44,15 @@
     "tags": ["keychain", "accessory"],
     "colorway": ["red", "black"],
     "inStock": true,
-    "description": "Llavero metálico con logo ARUATEAM grabado.",
+    "description": "Metal keychain with engraved ARUATEAM logo.",
     "specs": [
-      { "label": "Acabado", "value": "Anodizado" },
-      { "label": "Anilla", "value": "Acero" }
+      { "label": "Finish", "value": "Anodized" },
+      { "label": "Split ring", "value": "Steel" }
     ]
   },
   {
     "id": "tee-black-logo",
-    "name": "Tee ARUATEAM — Black",
+    "name": "ARUATEAM Tee — Black",
     "slug": "tee-black-logo",
     "price": 2500,
     "currency": "EUR",
@@ -60,17 +60,17 @@
     "tags": ["t-shirt"],
     "colorway": ["purple"],
     "inStock": true,
-    "description": "Camiseta 100% algodón, corte relajado, serigrafía ARUATEAM.",
+    "description": "100% cotton tee, relaxed fit, ARUATEAM screen print.",
     "sizeOptions": ["S", "M", "L", "XL"],
     "specs": [
-      { "label": "Tejido", "value": "Algodón 100% (190 g/m²)" },
-      { "label": "Corte", "value": "Relaxed fit" },
-      { "label": "Cuello", "value": "Canalé 1×1" }
+      { "label": "Fabric", "value": "100% cotton (190 g/m²)" },
+      { "label": "Fit", "value": "Relaxed fit" },
+      { "label": "Collar", "value": "1×1 rib" }
     ]
   },
   {
     "id": "hoodie-black-script",
-    "name": "Hoodie ARUATEAM — Script",
+    "name": "ARUATEAM Hoodie — Script",
     "slug": "hoodie-black-script",
     "price": 4900,
     "currency": "EUR",
@@ -78,17 +78,17 @@
     "tags": ["hoodie"],
     "colorway": ["purple", "black"],
     "inStock": false,
-    "description": "Sudadera con capucha, felpa premium, cordones planos.",
+    "description": "Hoodie with premium fleece and flat drawcords.",
     "sizeOptions": ["S", "M", "L", "XL", "XXL"],
     "specs": [
-      { "label": "Mezcla", "value": "70% algodón / 30% poliéster" },
-      { "label": "Felpa", "value": "Interior perchado" },
-      { "label": "Bolsillo", "value": "Canguro" }
+      { "label": "Blend", "value": "70% cotton / 30% polyester" },
+      { "label": "Fleece", "value": "Brushed interior" },
+      { "label": "Pocket", "value": "Kangaroo" }
     ]
   },
   {
     "id": "sticker-pack-aru",
-    "name": "Sticker Pack ARUATEAM",
+    "name": "ARUATEAM Sticker Pack",
     "slug": "sticker-pack-aru",
     "price": 800,
     "currency": "EUR",
@@ -96,11 +96,11 @@
     "tags": ["stickers", "accessory"],
     "colorway": ["white"],
     "inStock": true,
-    "description": "Pack de 5 pegatinas vinílicas resistentes a la intemperie con diseños ARUATEAM.",
+    "description": "Pack of 5 weather-resistant vinyl stickers with ARUATEAM designs.",
     "specs": [
-      { "label": "Material", "value": "Vinilo adhesivo" },
-      { "label": "Tamaño", "value": "Variado (5 unidades)" },
-      { "label": "Acabado", "value": "Brillante" }
+      { "label": "Material", "value": "Adhesive vinyl" },
+      { "label": "Size", "value": "Assorted (5 pcs)" },
+      { "label": "Finish", "value": "Glossy" }
     ]
   }
 ]
