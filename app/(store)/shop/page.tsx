@@ -4,7 +4,7 @@ import type { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product-card";
 import { useMemo, useState } from "react";
 
-const ALL = "Todos";
+const ALL = "All";
 type SortKey = "relevance" | "price-asc" | "price-desc" | "name";
 
 export default function ShopPage() {
@@ -60,20 +60,22 @@ export default function ShopPage() {
       <header className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Shop</h1>
-          <p className="text-sm text-muted">{sorted.length} productos</p>
+          <p className="text-sm text-muted">{sorted.length} products</p>
         </div>
 
         <div className="flex flex-col gap-2 sm:flex-row">
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Buscar…"
+            placeholder="Search…"
             className="rounded-lg border brd bg-[var(--bg)] px-3 py-2 text-sm"
+            aria-label="Search products"
           />
           <select
             value={cat}
             onChange={(e) => setCat(e.target.value)}
-            className="rounded-lg border brd bg-[var(--card)] px-3 py-2 text-sm"
+            className="rounded-lg border brd bg-[var(--card)] px-3 py-2 text-sm cursor-pointer"
+            aria-label="Filter by category"
           >
             {categories.map((c) => (
               <option key={c} value={c}>
@@ -84,19 +86,20 @@ export default function ShopPage() {
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
-            className="rounded-lg border brd bg-[var(--card)] px-3 py-2 text-sm"
+            className="rounded-lg border brd bg-[var(--card)] px-3 py-2 text-sm cursor-pointer"
+            aria-label="Sort products"
           >
-            <option value="relevance">Relevancia</option>
-            <option value="price-asc">Precio: menor a mayor</option>
-            <option value="price-desc">Precio: mayor a menor</option>
-            <option value="name">Nombre A–Z</option>
+            <option value="relevance">Relevance</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="name">Name A–Z</option>
           </select>
         </div>
       </header>
 
       {sorted.length === 0 ? (
         <div className="rounded-2xl border brd bg-card p-8 text-sm text-muted">
-          No hay productos que coincidan con tu búsqueda.
+          No products match your search.
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -9,7 +9,7 @@ import LightboxMin from "@/components/lightboxMin";
 
 function formatDate(iso: string) {
   try {
-    return new Intl.DateTimeFormat("es-ES", { dateStyle: "medium" }).format(
+    return new Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(
       new Date(iso)
     );
   } catch {
@@ -37,7 +37,7 @@ export default function GalleryPage() {
       <header className="mb-6">
         <h1 className="text-2xl font-bold tracking-tight">Gallery</h1>
         <p className="text-sm text-muted">
-          Sesiones, eventos y lifestyle de ARUATEAM (crédito a fotógrafos).
+          ARUATEAM sessions, events, and lifestyle (photographer credits).
         </p>
       </header>
 
@@ -50,7 +50,7 @@ export default function GalleryPage() {
                   {s.title}
                 </h2>
                 <p className="text-xs text-muted">
-                  Por{" "}
+                  By{" "}
                   {s.photographer.instagram ? (
                     <a
                       href={`https://instagram.com/${s.photographer.instagram.replace(
@@ -59,7 +59,7 @@ export default function GalleryPage() {
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 hover:text-brand"
+                      className="inline-flex items-center gap-1 hover:text-brand cursor-pointer"
                     >
                       {s.photographer.name}{" "}
                       <ExternalLink className="h-3.5 w-3.5" />
@@ -81,7 +81,8 @@ export default function GalleryPage() {
                     setActive({ sid: s.id, index: i });
                     setOpen(true);
                   }}
-                  className="group relative overflow-hidden rounded-xl border brd focus:outline-none focus:ring-2 focus:ring-[var(--brand)]"
+                  className="group relative overflow-hidden rounded-xl border brd focus:outline-none focus:ring-2 focus:ring-[var(--brand)] cursor-pointer"
+                  aria-label={`Open image ${i + 1} from ${s.title}`}
                 >
                   <Image
                     src={img.src}
@@ -100,18 +101,18 @@ export default function GalleryPage() {
         ))}
       </div>
 
-      {/* CTA simple hacia Shop (natural) */}
+      {/* Simple CTA to Shop */}
       <section className="mt-12">
         <div className="rounded-2xl border brd bg-[var(--card)] p-6 text-center">
           <p className="text-sm text-muted">
-            Si te mola lo que ves, por aquí tienes nuestro shop. Sin prisa.
+            If you like what you see, check out our shop. No rush.
           </p>
           <div className="mt-3">
             <Link
               href="/shop"
-              className="inline-flex items-center justify-center rounded-full bg-brand px-5 py-2 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)]"
+              className="inline-flex items-center justify-center rounded-full bg-brand px-5 py-2 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)] cursor-pointer"
             >
-              Ir al Shop
+              Go to Shop
             </Link>
           </div>
         </div>

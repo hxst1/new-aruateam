@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
-const ALL = "Todos";
+const ALL = "All";
 const LIMIT = 6;
 
 export default function HomePage() {
@@ -74,21 +74,22 @@ export default function HomePage() {
               ARUATEAM <span className="text-brand">DRIFT</span> SUPPLY
             </h1>
             <p className="mt-3 max-w-prose text-base text-muted">
-              Lanyards, noboris, llaveros, camisetas y sudaderas. Tonos negros
-              en modo oscuro con acento morado; en claro, acento rojo.
+              Lanyards, noboris, keychains, T-shirts and hoodies. Dark mode
+              features black tones with purple accents; light mode uses red
+              accents.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href="#catalogo"
-                className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-[var(--brand-fg)]"
+                href="#shop"
+                className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-[var(--brand-fg)] cursor-pointer"
               >
-                Ver catálogo
+                Shop
               </a>
               <a
-                href="#accesorios"
-                className="rounded-full border brd px-4 py-2 text-sm"
+                href="#gallery"
+                className="rounded-full border brd px-4 py-2 text-sm cursor-pointer"
               >
-                Accesorios
+                Gallery
               </a>
             </div>
           </div>
@@ -96,7 +97,7 @@ export default function HomePage() {
           <div className="aspect-[4/3] rounded-2xl border brd bg-[var(--bg)]">
             <Image
               src="/images/test.jpg"
-              alt="Foto de productos ARUATEAM"
+              alt="ARUATEAM product photo"
               width={800}
               height={600}
               className="h-full w-full rounded-2xl object-cover"
@@ -105,22 +106,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CATÁLOGO */}
-      <section id="catalogo" className="my-12">
+      {/* SHOP */}
+      <section id="shop" className="my-16 pt-24">
         <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div className="flex items-end gap-3">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight">Catálogo</h2>
+              <h2 className="text-2xl font-bold tracking-tight">Shop</h2>
               <p className="text-sm text-muted">
-                Mostrando {Math.min(LIMIT, filtered.length)} de{" "}
-                {filtered.length}
+                Showing {Math.min(LIMIT, filtered.length)} of {filtered.length}
               </p>
             </div>
             <Link
               href="/shop"
-              className="rounded-full border brd px-3 py-1.5 text-xs sm:text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)]"
+              className="rounded-full border brd px-3 py-1.5 text-xs sm:text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)] cursor-pointer"
             >
-              Ver catálogo completo
+              View full catalog
             </Link>
           </div>
 
@@ -128,13 +128,13 @@ export default function HomePage() {
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Buscar…"
+              placeholder="Search…"
               className="rounded-lg border brd bg-[var(--bg)] px-3 py-2 text-sm"
             />
             <select
               value={cat}
               onChange={(e) => setCat(e.target.value)}
-              className="rounded-lg border brd bg-[var(--card)] px-3 py-2 text-sm"
+              className="rounded-lg border brd bg-[var(--card)] px-3 py-2 text-sm cursor-pointer"
             >
               {categories.map((c) => (
                 <option key={c} value={c}>
@@ -147,7 +147,7 @@ export default function HomePage() {
 
         {filtered.length === 0 ? (
           <div className="rounded-2xl border brd bg-card p-8 text-sm text-muted">
-            No hay productos que coincidan con tu búsqueda.
+            No products match your search.
           </div>
         ) : (
           <>
@@ -157,38 +157,37 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* CTA bajo el grid */}
+            {/* CTA under grid */}
             <div className="mt-8 flex justify-center">
               <Link
                 href="/shop"
-                className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)]"
+                className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)] cursor-pointer"
               >
-                Ver el catálogo completo
+                View full catalog
               </Link>
             </div>
           </>
         )}
       </section>
 
-      {/* GALERÍA (teaser) */}
-      <section className="my-16">
+      {/* GALLERY (teaser) */}
+      <section id="gallery" className="my-16">
         <div className="mb-4 flex items-end justify-between">
           <div>
-            <h3 className="text-xl font-bold tracking-tight">Galería</h3>
+            <h3 className="text-xl font-bold tracking-tight">Gallery</h3>
             <p className="text-sm text-muted">
-              Sesiones, eventos y lifestyle ARUATEAM
+              ARUATEAM sessions, events, and lifestyle
             </p>
           </div>
           <Link
             href="/gallery"
-            className="rounded-full border brd px-3 py-1.5 text-xs sm:text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)]"
+            className="rounded-full border brd px-3 py-1.5 text-xs sm:text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)] cursor-pointer"
           >
-            Ver galería
+            View gallery
           </Link>
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-          {/* Sustituye por tus imágenes reales */}
           {[
             "/images/test.jpg",
             "/images/test1.jpg",
@@ -205,12 +204,12 @@ export default function HomePage() {
             >
               <Image
                 src={src}
-                alt={`Galería ${i + 1}`}
+                alt={`Gallery ${i + 1}`}
                 width={600}
                 height={600}
                 className="h-40 w-full object-cover sm:h-44 md:h-48 transition-transform duration-500 ease-out will-change-transform group-hover:scale-[1.06]"
               />
-              {/* overlay suave */}
+              {/* soft overlay */}
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
@@ -221,9 +220,9 @@ export default function HomePage() {
         <div className="mt-6 flex justify-center">
           <Link
             href="/gallery"
-            className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)]"
+            className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)] cursor-pointer"
           >
-            Ver galería completa
+            View full gallery
           </Link>
         </div>
       </section>

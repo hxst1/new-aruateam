@@ -7,7 +7,7 @@ import ColorPill from "@/components/color-pill";
 import { Check, Info, Ruler, Shirt, ShoppingCart } from "lucide-react";
 
 function formatEUR(cents: number, currency = "EUR") {
-  return new Intl.NumberFormat("es-ES", { style: "currency", currency }).format(
+  return new Intl.NumberFormat("en-IE", { style: "currency", currency }).format(
     cents / 100
   );
 }
@@ -45,7 +45,7 @@ export default function ProductDetail({ product }: { product: Product }) {
               sizes="(min-width: 1024px) 50vw, 100vw"
             />
             <div className="absolute left-3 top-3 rounded-full bg-brand px-3 py-1 text-xs font-medium text-[var(--brand-fg)]">
-              {product.inStock ? "En stock" : "Agotado"}
+              {product.inStock ? "In stock" : "Sold out"}
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function ProductDetail({ product }: { product: Product }) {
             <fieldset className="mt-6">
               <legend className="mb-2 flex items-center gap-2 text-sm font-medium">
                 <Shirt className="h-4 w-4" />
-                Talla
+                Size
               </legend>
               <div className="flex flex-wrap gap-2">
                 {product.sizeOptions!.map((s) => {
@@ -89,7 +89,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                       type="button"
                       onClick={() => setSize(s)}
                       className={[
-                        "rounded-full px-3 py-1.5 text-sm border transition-shadow",
+                        "rounded-full px-3 py-1.5 text-sm border transition-shadow cursor-pointer",
                         active
                           ? "bg-brand text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)]"
                           : "bg-[var(--bg)] brd hover:shadow-[0_0_0_2px_var(--brand-ring)]",
@@ -103,7 +103,7 @@ export default function ProductDetail({ product }: { product: Product }) {
               </div>
               {!size && (
                 <p className="mt-2 text-xs text-muted">
-                  Selecciona una talla para continuar.
+                  Select a size to continue.
                 </p>
               )}
             </fieldset>
@@ -113,8 +113,8 @@ export default function ProductDetail({ product }: { product: Product }) {
             <div className="inline-flex items-center gap-2">
               <button
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
-                className="h-9 w-9 rounded border brd"
-                aria-label="Disminuir cantidad"
+                className="h-9 w-9 rounded border brd cursor-pointer"
+                aria-label="Decrease quantity"
               >
                 −
               </button>
@@ -125,32 +125,32 @@ export default function ProductDetail({ product }: { product: Product }) {
                   const v = parseInt(e.target.value || "1", 10);
                   if (!Number.isNaN(v)) setQty(Math.max(1, Math.min(v, 99)));
                 }}
-                aria-label="Cantidad"
+                aria-label="Quantity"
                 inputMode="numeric"
               />
               <button
                 onClick={() => setQty((q) => Math.min(99, q + 1))}
-                className="h-9 w-9 rounded border brd"
-                aria-label="Aumentar cantidad"
+                className="h-9 w-9 rounded border brd cursor-pointer"
+                aria-label="Increase quantity"
               >
                 +
               </button>
             </div>
 
             <button
-              className="inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)] disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)] disabled:opacity-50 cursor-pointer"
               disabled={!canBuy}
               onClick={() => {
-                // añadimos con talla como variante
+                // add to cart with selected size as variant
                 addProduct({ ...product, name: displayName }, qty, { size });
               }}
             >
               <ShoppingCart className="h-4 w-4" />
-              {product.inStock ? "Añadir al carrito" : "Agotado"}
+              {product.inStock ? "Add to cart" : "Sold out"}
             </button>
 
-            <button className="rounded-full border brd px-5 py-2.5 text-sm">
-              Lista de deseos
+            <button className="rounded-full border brd px-5 py-2.5 text-sm cursor-pointer">
+              Wishlist
             </button>
           </div>
 
@@ -165,7 +165,7 @@ export default function ProductDetail({ product }: { product: Product }) {
               {product.sizeOptions && (
                 <span className="inline-flex items-center gap-1.5">
                   <Check className="h-4 w-4" />
-                  Guía de tallas (pronto)
+                  Size guide (coming soon)
                 </span>
               )}
             </div>
@@ -175,7 +175,7 @@ export default function ProductDetail({ product }: { product: Product }) {
             <section className="mt-8">
               <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-wide uppercase">
                 <Info className="h-4 w-4" />
-                Especificaciones
+                Specifications
               </h2>
               <div className="grid grid-cols-1 gap-2 rounded-xl border brd p-4 md:grid-cols-2">
                 {product.specs.map((s, i) => (
@@ -192,7 +192,7 @@ export default function ProductDetail({ product }: { product: Product }) {
           )}
 
           <div className="mt-10 text-xs text-muted">
-            * Demo frontend (sin backend). Stripe se añadirá más adelante.
+            * Frontend demo (no backend). Stripe will be added later.
           </div>
         </div>
       </div>

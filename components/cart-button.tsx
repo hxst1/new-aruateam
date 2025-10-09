@@ -18,13 +18,13 @@ import ColorSwatch from "./color-swatch";
 import { useBodyScrollLock } from "@/lib/use-body-scroll-lock";
 
 function formatEUR(cents: number) {
-  return new Intl.NumberFormat("es-ES", {
+  return new Intl.NumberFormat("en-IE", {
     style: "currency",
     currency: "EUR",
   }).format(cents / 100);
 }
 
-// Portal simple para montar en <body>
+// Simple portal to mount into <body>
 function Portal({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -40,10 +40,10 @@ export default function CartButton() {
 
   useEffect(() => setMounted(true), []);
 
-  // Bloquea el scroll cuando el cart está abierto
+  // Lock body scroll when the cart is open
   useBodyScrollLock(open);
 
-  // Cerrar con ESC
+  // Close with ESC
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -55,15 +55,15 @@ export default function CartButton() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="relative inline-flex items-center gap-2 rounded-full border brd bg-[var(--card)] px-3 py-1.5 text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)] transition-all"
+        className="cursor-pointer relative inline-flex items-center gap-2 rounded-full border brd bg-[var(--card)] px-3 py-1.5 text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)] transition-all"
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls="cart-drawer"
       >
         <ShoppingCart className="h-4 w-4" aria-hidden />
-        <span>Carrito</span>
+        <span>Cart</span>
         {mounted && count > 0 && (
-          <span className="ml-1 inline-flex items-center justify-center rounded-full bg-brand px-2 py-0.5 text-xs text-[var(--brand-fg)]">
+          <span className="ml-1 inline-flex items-center justify-center rounded-full bg-brand px-1.75 py-0.5 text-xs text-[var(--brand-fg)]">
             {count}
           </span>
         )}
@@ -71,9 +71,9 @@ export default function CartButton() {
 
       {open && (
         <Portal>
-          {/* Overlay raíz en <body> */}
+          {/* Root overlay on <body> */}
           <div className="fixed inset-0 z-[100]">
-            {/* Backdrop: cierra al click y NO deja pasar eventos al contenido */}
+            {/* Backdrop: closes on click and does NOT let events pass through */}
             <button
               type="button"
               aria-hidden="true"
@@ -87,18 +87,18 @@ export default function CartButton() {
               ref={panelRef}
               id="cart-drawer"
               role="dialog"
-              aria-label="Carrito"
+              aria-label="Shopping cart"
               className="fixed right-0 top-0 flex h-dvh w-full max-w-sm flex-col border-l brd bg-[var(--bg)] shadow-2xl"
             >
               <div className="flex items-center justify-between border-b brd p-4">
                 <h3 className="inline-flex items-center gap-2 text-lg font-semibold">
                   <ShoppingCart className="h-5 w-5" aria-hidden />
-                  Tu carrito
+                  Shopping Cart
                 </h3>
                 <button
                   onClick={() => setOpen(false)}
-                  className="text-muted hover:text-brand"
-                  aria-label="Cerrar carrito"
+                  className="text-muted hover:text-brand cursor-pointer"
+                  aria-label="Close cart"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -114,7 +114,7 @@ export default function CartButton() {
                 {state.lines.length === 0 ? (
                   <div className="p-10 text-center text-sm text-muted">
                     <Package className="mx-auto mb-3 h-6 w-6" aria-hidden />
-                    Tu carrito está vacío.
+                    Your cart is empty, sadly.
                   </div>
                 ) : (
                   state.lines.map((l) => (
@@ -139,7 +139,7 @@ export default function CartButton() {
                           {l.name}
                         </Link>
 
-                        {/* Badges: color + talla */}
+                        {/* Badges: color + size */}
                         <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
                           {l.colorway && l.colorway.length > 0 && (
                             <span className="inline-flex items-center gap-1 rounded-full border brd px-2 py-0.5">
@@ -149,33 +149,33 @@ export default function CartButton() {
                           )}
                           {l.size && (
                             <span className="rounded-full border brd px-2 py-0.5">
-                              Talla: <strong className="ml-1">{l.size}</strong>
+                              Size: <strong className="ml-1">{l.size}</strong>
                             </span>
                           )}
                         </div>
 
-                        {/* Precio unitario */}
+                        {/* Unit price */}
                         <div className="mt-1 text-sm text-muted">
                           <Tag
                             className="mr-1 inline h-3.5 w-3.5"
                             aria-hidden
                           />
-                          {formatEUR(l.price)} / ud.
+                          {formatEUR(l.price)} / ea.
                         </div>
 
-                        {/* Controles */}
+                        {/* Controls */}
                         <div className="mt-2 inline-flex items-center gap-2">
                           <button
                             onClick={() =>
                               setQty(l.key, Math.max(1, l.qty - 1))
                             }
-                            className="inline-flex h-7 w-7 items-center justify-center rounded border brd"
-                            aria-label="Disminuir"
+                            className="inline-flex h-7 w-7 items-center justify-center rounded border brd cursor-pointer"
+                            aria-label="Decrease quantity"
                           >
                             <Minus className="h-4 w-4" />
                           </button>
                           <input
-                            className="w-12 rounded border brd bg-[var(--bg)] p-1 text-center"
+                            className="w-12 rounded border brd bg-[var(--bg)] p-1 text-center cursor-pointer"
                             value={l.qty}
                             onChange={(e) => {
                               const v = parseInt(e.target.value || "1", 10);
@@ -183,29 +183,29 @@ export default function CartButton() {
                                 setQty(l.key, Math.max(1, Math.min(v, 99)));
                             }}
                             inputMode="numeric"
-                            aria-label="Cantidad"
+                            aria-label="Quantity"
                           />
                           <button
                             onClick={() =>
                               setQty(l.key, Math.min(99, l.qty + 1))
                             }
-                            className="inline-flex h-7 w-7 items-center justify-center rounded border brd"
-                            aria-label="Aumentar"
+                            className="inline-flex h-7 w-7 items-center justify-center rounded border brd cursor-pointer"
+                            aria-label="Increase quantity"
                           >
                             <Plus className="h-4 w-4" />
                           </button>
 
                           <button
                             onClick={() => remove(l.key)}
-                            className="ml-3 inline-flex items-center gap-1 text-sm text-muted hover:text-brand"
-                            aria-label="Eliminar producto"
-                            title="Eliminar"
+                            className="ml-3 inline-flex items-center gap-1 text-sm text-muted hover:text-brand cursor-pointer"
+                            aria-label="Delete product"
+                            title="Delete product"
                           >
                             <Trash2 className="h-4 w-4" />
-                            <span className="sr-only">Eliminar</span>
+                            <span className="sr-only">Delete product</span>
                           </button>
 
-                          {/* Total por línea a la derecha */}
+                          {/* Line total aligned right */}
                           <span className="ml-auto text-sm font-medium">
                             {formatEUR(l.price * l.qty)}
                           </span>
@@ -224,20 +224,20 @@ export default function CartButton() {
                 <div className="mt-3 flex gap-2">
                   <button
                     onClick={clear}
-                    className="flex-1 rounded-full border brd px-4 py-2 text-sm"
+                    className="flex-1 rounded-full border brd px-4 py-2 text-sm cursor-pointer"
                   >
-                    Vaciar
+                    Empty
                   </button>
                   <button
-                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-[var(--brand-fg)]"
+                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-[var(--brand-fg)] cursor-pointer"
                     disabled
                   >
                     <CreditCard className="h-4 w-4" aria-hidden />
-                    Pagar (pronto)
+                    Pay (soon)
                   </button>
                 </div>
                 <p className="mt-2 text-xs text-muted">
-                  * Demo sin backend. Stripe se añadirá más adelante.
+                  * Demo without backend. Stripe will be added later.
                 </p>
               </div>
             </aside>

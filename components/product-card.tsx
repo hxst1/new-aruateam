@@ -20,13 +20,16 @@ export function ProductCard({ product }: { product: Product }) {
       ? `${colors[0]} / ${colors[1]}`
       : colors.length === 1
       ? colors[0]
-      : "sin color";
+      : "no color";
 
   return (
     <div className="group h-full">
       <div className="card h-full overflow-hidden transition-transform duration-300 group-hover:-translate-y-0.5 flex flex-col border brd">
         {/* Media */}
-        <Link href={`/product/${product.slug}`} className="block">
+        <Link
+          href={`/product/${product.slug}`}
+          className="block cursor-pointer"
+        >
           <div className="relative aspect-[4/3] w-full">
             <Image
               src={product.images?.[0] ?? "/placeholder.png"}
@@ -36,14 +39,17 @@ export function ProductCard({ product }: { product: Product }) {
               className="object-cover"
             />
             <div className="absolute left-3 top-3 rounded-full bg-brand px-3 py-1 text-xs font-medium text-[var(--brand-fg)]">
-              {product.inStock ? "En stock" : "Agotado"}
+              {product.inStock ? "In stock" : "Sold out"}
             </div>
           </div>
         </Link>
 
         {/* Body */}
         <div className="flex flex-1 flex-col p-4">
-          <Link href={`/product/${product.slug}`} className="block">
+          <Link
+            href={`/product/${product.slug}`}
+            className="block cursor-pointer"
+          >
             <h3 className="text-base font-semibold tracking-tight">
               {product.name}
             </h3>
@@ -54,7 +60,7 @@ export function ProductCard({ product }: { product: Product }) {
             )}
           </Link>
 
-          {/* Metas */}
+          {/* Meta info */}
           <div className="mt-2 flex items-center gap-2">
             <ColorSwatch
               colors={colors}
@@ -69,16 +75,16 @@ export function ProductCard({ product }: { product: Product }) {
             )}
           </div>
 
-          {/* Footer (pegado abajo) */}
+          {/* Footer (bottom-aligned) */}
           <div className="mt-auto flex items-center justify-between pt-3">
             <Price amount={product.price} currency={product.currency} />
             <button
               onClick={() => addProduct(product, 1)}
-              className="inline-flex items-center gap-1.5 rounded-full bg-brand px-3 py-1.5 text-xs font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)] disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 rounded-full bg-brand px-3 py-1.5 text-xs font-semibold text-[var(--brand-fg)] hover:shadow-[0_0_0_4px_var(--brand-ring)] disabled:opacity-50 cursor-pointer"
               disabled={!product.inStock}
             >
               <ShoppingCart className="h-3.5 w-3.5" aria-hidden />
-              Añadir
+              Add
             </button>
           </div>
         </div>

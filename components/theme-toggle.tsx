@@ -25,7 +25,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="inline-flex items-center gap-2 rounded-full border brd bg-[var(--card)] px-3 py-1.5 text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)] transition-all"
+      className="inline-flex items-center gap-2 rounded-full border brd bg-[var(--card)] px-3 py-1.5 text-sm hover:shadow-[0_0_0_4px_var(--brand-ring)] transition-all cursor-pointer"
       aria-label="Cambiar tema"
     >
       {theme === "dark" ? (
@@ -35,7 +35,7 @@ export default function ThemeToggle() {
       )}
       {
         <span className="hidden md:inline">
-          {theme === "dark" ? "Oscuro" : "Claro"}
+          {theme === "dark" ? "Dark" : "Light"}
         </span>
       }
     </button>
